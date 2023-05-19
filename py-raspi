@@ -1,0 +1,12 @@
+import serial
+
+ser = serial.Serial('/dev/ttyUSB0', 9600)  # Ouvrir la connexion série avec Arduino
+
+while True:
+    if ser.in_waiting:
+        data = ser.read()  # Lire les données provenant d'Arduino
+        print(data)  # Afficher les données reçues
+
+    if input():
+        data = input()  # Lire les données depuis la console
+        ser.write(data.encode())  # Envoyer les données à Arduino
